@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/SetPlayers">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.rubberbridge.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/SetPlayers"
+        android:name="com.example.rubberbridge.SetPlayers"
+        android:label="@string/set_players_label">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_SetPlayers_to_Table"
+            app:destination="@id/Table" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.rubberbridge.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/Table"
+        android:name="com.example.rubberbridge.Table"
+        android:label="@string/table_label">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_Table_to_SetPlayers"
+            app:destination="@id/SetPlayers" />
     </fragment>
 </navigation>
