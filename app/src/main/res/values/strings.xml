@@ -4,9 +4,11 @@
     <!-- Strings used for fragments for navigation -->
     <string name="set_players_label">Ввод игроков</string>
     <string name="table_label">Таблица результатов</string>
-    <string name="next">Next</string>
+    <string name="next">Ввод</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="not_enough_players">Не все игроки введены!</string>s
 </resources>

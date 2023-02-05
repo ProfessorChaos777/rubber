@@ -33,7 +33,18 @@ class SetPlayers : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_SetPlayers_to_Table)
+            //var text_length = binding.editTextPlayer1.length()
+
+            if( binding.editTextPlayer1.length() == 0 ||
+                binding.editTextPlayer2.length() == 0 ||
+                binding.editTextPlayer3.length() == 0 ||
+                binding.editTextPlayer4.length() == 0 ) {
+
+                binding.errorText.setText(getString(R.string.not_enough_players))
+            }
+            else {
+                findNavController().navigate(R.id.action_SetPlayers_to_Table)
+            }
         }
     }
 
