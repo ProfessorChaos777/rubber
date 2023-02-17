@@ -28,40 +28,41 @@ class Robber(var table: Table_to_draw=Table_to_draw()) {
 
     //здесь будет обновляться таблица
     fun  updatetable(){
-        table=Table_to_draw()
+        table = Table_to_draw()
         var pointResult:PointResult
         for(game in games){
             pointResult=getPointResult(game,table.zoneTeam1,table.zoneTeam2)
 
-            if(pointResult.winnerteam==1){
-                table.allPointsTeam1+=pointResult.allPoints
-                table.partPointsTeam1+=pointResult.partPoints
-                if(table.partPointsTeam1>=100){
+            if(pointResult.winnerteam == 1){
+                table.allPointsTeam1 += pointResult.allPoints
+                table.partPointsTeam1 += pointResult.partPoints
+                if(table.partPointsTeam1 >= 100){
                     if(table.zoneTeam1){
-                        table.endGame=true
+                        table.endGame = true
                         //геймовая премия
-                        table.allPointsTeam1+=500
+                        table.allPointsTeam1 += perimya_game
                     }else{
-                        table.partPointsTeam1=0
-                        table.zoneTeam1=true
+                        table.partPointsTeam1 = 0
+                        table.zoneTeam1 = true
                         //геймовая премия
-                        table.allPointsTeam1+=200
+                        table.allPointsTeam1 += 200
                     }
                 }
             }
-            if(pointResult.winnerteam==2){
-                table.allPointsTeam2+=pointResult.allPoints
-                table.partPointsTeam2+=pointResult.partPoints
-                if(table.partPointsTeam2>=100){
+            if(pointResult.winnerteam == 2){
+                table.allPointsTeam2 += pointResult.allPoints
+                table.partPointsTeam2 += pointResult.partPoints
+                if(table.partPointsTeam2 >= 100){
                     if(table.zoneTeam2){
-                        table.endGame=true
+                        table.endGame = true
+                        table.allPointsTeam2 += 500
                         //геймовая премия
-                    }else{
-                        table.allPointsTeam2+=500
-                        table.partPointsTeam2=0
-                        table.zoneTeam2=true
+                    }
+                    else{         
+                        table.partPointsTeam2 = 0
+                        table.zoneTeam2 = true
                         //геймовая премия
-                        table.allPointsTeam2+=200
+                        table.allPointsTeam2 += 200
                     }
                 }
             }
