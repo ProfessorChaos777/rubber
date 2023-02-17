@@ -40,7 +40,7 @@ class Robber(var table: Table_to_draw=Table_to_draw()) {
                     if(table.zoneTeam1){
                         table.endGame = true
                         //геймовая премия
-                        table.allPointsTeam1 += perimya_game
+                        table.allPointsTeam1 += 500
                     }else{
                         table.partPointsTeam1 = 0
                         table.zoneTeam1 = true
@@ -73,9 +73,9 @@ class Robber(var table: Table_to_draw=Table_to_draw()) {
     //здесь преобразовывается результат игры в очки
     fun  getPointResult(game:Game,zoneTeam1:Boolean,zoneTeam2:Boolean):PointResult{
         var pointResult:PointResult=PointResult(0,0,0)
-        val zoneGame:Boolean= (zoneTeam1 && game.team==1)||(zoneTeam2 && game.team==2)
-        if(game.contract.dbl==0){
-            if(game.result>=game.contract.level+6){
+        val zoneGame:Boolean = (zoneTeam1 && game.team==1)||(zoneTeam2 && game.team==2)
+        if(game.contract.dbl == 0){
+            if(game.result >= game.contract.level + 6){
                 when(game.contract.suit){
                     0-> pointResult.partPoints=game.contract.level*20
                     1-> pointResult.partPoints=game.contract.level*20
