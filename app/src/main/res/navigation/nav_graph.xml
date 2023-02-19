@@ -19,8 +19,38 @@
         android:name="com.example.rubberbridge.Table"
         android:label="@string/table_label">
 
+        <argument
+            android:name="Player_1"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="Player_2"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="Player_3"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="Player_4"
+            app:argType="string"
+            android:defaultValue=" " />
+
         <action
             android:id="@+id/action_Table_to_SetPlayers"
             app:destination="@id/SetPlayers" />
+        <action
+            android:id="@+id/action_Table_to_ResultOfDeal"
+            app:destination="@id/ResultOfDeal" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ResultOfDeal"
+        android:name="com.example.rubberbridge.ResultOfDeal"
+        android:label="@string/enter_results">
+
+        <action
+            android:id="@+id/action_to_Table"
+            app:destination="@id/Table" />
     </fragment>
 </navigation>

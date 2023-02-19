@@ -162,19 +162,21 @@ class Table : Fragment() {
 
         binding.buttonApproveContract.setOnClickListener {
 
-            var level: Int = view.findViewById<TextView>(R.id.edit_level).text.toString().toInt()
-            var suit: Int = view.findViewById<TextView>(R.id.edit_suit).text.toString().toInt()
-            var result: Int = view.findViewById<TextView>(R.id.edit_result_level).text.toString().toInt()
-            var team: Int = view.findViewById<TextView>(R.id.edit_player).text.toString().toInt()
+            findNavController().navigate(R.id.action_Table_to_ResultOfDeal)
 
-            var robber:Robber=Robber()
+           //val level: Int = view.findViewById<TextView>(R.id.edit_level).text.toString().toInt()
+           //val suit: Int = view.findViewById<TextView>(R.id.edit_suit).text.toString().toInt()
+           //val result: Int = view.findViewById<TextView>(R.id.edit_result_level).text.toString().toInt()
+           //val team: Int = view.findViewById<TextView>(R.id.edit_player).text.toString().toInt()
 
-            robber.addGame(Game(team, result, Contract(level, suit,0)))
+           //val robber:Robber=Robber()
 
-            binding.columnTopRight.setText("texts")
+           //robber.addGame(Game(team, result, Contract(level, suit,0)))
 
-            binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
-            binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
+           //binding.columnTopRight.setText("texts")
+
+           //binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
+           //binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
             //            //println("Команда 1 - 3 бк с 3-мя оверами  ")
             //howTable(robber)
         }
