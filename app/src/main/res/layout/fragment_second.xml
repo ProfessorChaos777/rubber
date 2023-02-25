@@ -18,11 +18,11 @@
 
     <Button
         android:id="@+id/button_second"
-        android:layout_width="108dp"
-        android:layout_height="45dp"
+        android:layout_width="158dp"
+        android:layout_height="85dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="18dp"
-        android:text="@string/previous"
+        android:text="@string/build_table"
         app:layout_constraintStart_toEndOf="@+id/button_approve_contract"
         app:layout_constraintTop_toBottomOf="@+id/column_bottom_right" />
 
@@ -92,5 +92,16 @@
         app:layout_constraintEnd_toStartOf="@+id/button_second"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/column_bottom_left" />
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="207dp"
+        android:layout_height="129dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="126dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_second" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

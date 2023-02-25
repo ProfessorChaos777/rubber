@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rubberbridge.databinding.FragmentSecondBinding
+import java.io.File
+
 //import com.example.rubberbridge.databinding.TableBinding
 
 /**
@@ -152,35 +155,56 @@ class Table : Fragment() {
         return binding.root
 
     }
+    fun tryGetResultsFromFile(view: View): String {
+        val letDirectory = File(context?.getFilesDir(), "Rubber")
+        var success = true
+        if(!letDirectory.exists())
+            success = letDirectory.mkdirs()
 
+        val sd2 = File(letDirectory,"Results.txt")
+
+        var result : List<String> = emptyList()
+
+        if (!sd2.exists()) {
+            success = sd2.createNewFile()
+            binding.errorTextView.setText(getString(R.string.open_file_error))
+        }
+        if(success) {
+            try {
+                result = sd2.readLines()
+            } catch (e: Exception) {
+                // handle the exception
+                success = false
+                binding.errorTextView.setText(getString(R.string.create_directory_error))
+            }
+        }
+
+        return result.get(0)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_Table_to_SetPlayers)
+            val str = tryGetResultsFromFile(view)
+            if(str.length > 1) {
+                val level: Int = str[0].toInt()
+                val suit: Int = str[2].toInt()
+                val result: Int = str[4].toInt()
+                val team: Int = str[6].toInt()
+
+                val robber:Robber=Robber()
+
+                robber.addGame(Game(team, result, Contract(level, suit,0)))
+
+                binding.columnTopRight.setText("texts")
+
+                binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
+                binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
+            }
         }
 
-
-
         binding.buttonApproveContract.setOnClickListener {
-
             findNavController().navigate(R.id.action_Table_to_ResultOfDeal)
-
-           //val level: Int = view.findViewById<TextView>(R.id.edit_level).text.toString().toInt()
-           //val suit: Int = view.findViewById<TextView>(R.id.edit_suit).text.toString().toInt()
-           //val result: Int = view.findViewById<TextView>(R.id.edit_result_level).text.toString().toInt()
-           //val team: Int = view.findViewById<TextView>(R.id.edit_player).text.toString().toInt()
-
-           //val robber:Robber=Robber()
-
-           //robber.addGame(Game(team, result, Contract(level, suit,0)))
-
-           //binding.columnTopRight.setText("texts")
-
-           //binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
-           //binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
-            //            //println("Команда 1 - 3 бк с 3-мя оверами  ")
-            //howTable(robber)
         }
     }
 
