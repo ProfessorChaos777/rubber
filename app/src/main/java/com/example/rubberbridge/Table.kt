@@ -43,6 +43,7 @@ class Robber(var table: Table_to_draw=Table_to_draw()) {
                         table.allPointsTeam1 += 500
                     }else{
                         table.partPointsTeam1 = 0
+                        table.partPointsTeam2 = 0
                         table.zoneTeam1 = true
                         //геймовая премия
                         table.allPointsTeam1 += 200
@@ -60,6 +61,7 @@ class Robber(var table: Table_to_draw=Table_to_draw()) {
                     }
                     else{         
                         table.partPointsTeam2 = 0
+                        table.partPointsTeam1 = 0
                         table.zoneTeam2 = true
                         //геймовая премия
                         table.allPointsTeam2 += 200
