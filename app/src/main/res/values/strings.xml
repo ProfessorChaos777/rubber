@@ -7,7 +7,7 @@
     <string name="enter_results">Ввод результатов</string>
 
     <string name="next">Ввод</string>
-    <string name="previous">Previous</string>
+    <string name="build_table">Построить таблицу</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -22,4 +22,5 @@
     <string name="file_write_error">Ошибка записи в файл!</string>s
     <string name="create_file_error">Ошибка создания файла!</string>s
     <string name="create_directory_error">Ошибка создания директории!</string>s
+    <string name="open_file_error">Ошибка открытия файла!</string>s
 </resources>

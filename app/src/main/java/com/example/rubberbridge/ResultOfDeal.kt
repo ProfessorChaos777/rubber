@@ -1,6 +1,8 @@
 package com.example.rubberbridge
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rubberbridge.databinding.FragmentResultOfDealBinding
-import java.io.File
-import java.io.PrintWriter
+import java.io.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,48 +52,39 @@ class ResultOfDeal : Fragment() {
         return binding.root
     }
 
-    fun hasExternalStoragePrivateFile(): Boolean {
-        // Get path for the file on external storage.  If external
-        // storage is not currently mounted this will fail.
-        val path = context?.getFilesDir()
-        val letDirectory = File(path, "Rubber")
-        letDirectory.mkdirs()
-
-        val sd_main = File(letDirectory, "Results.txt")
+    fun trySaveResultsToFile(view: View): Boolean {
+        val letDirectory = File(context?.getFilesDir(), "Rubber")
         var success = true
+        if(!letDirectory.exists())
+            success = letDirectory.mkdirs()
 
-        if (!sd_main.exists())
-            success = sd_main.mkdir()
+        val sd2 = File(letDirectory,"Results.txt")
 
-        if (success) {
-            val sd = File("filename.txt")
-            return sd.exists()
-           // if (!sd.exists())
-           //     success = sd.mkdir()
-//
-           // if (success) {
-           //     // directory exists or already created
-           //     val dest = File(sd, "Records.txt")
-           //     try {
-           //         // response is the data written to file
-           //         PrintWriter(dest).use { out -> out.println("11") }
-           //     } catch (e: Exception) {
-           //         // handle the exception
-           //     }
-           // }
-        } else {
-            // directory creation is not successful
+        if (!sd2.exists()) {
+            success = sd2.createNewFile()
+            binding.errorText.setText(getString(R.string.open_file_error))
         }
+        if(success) {
+            try {
+                var result = view.findViewById<TextView>(R.id.edit_level).text.toString() + " "
+                result +=view.findViewById<TextView>(R.id.edit_suit).text.toString() + " "
+                result +=view.findViewById<TextView>(R.id.edit_result_level).text.toString() + " "
+                result += view.findViewById<TextView>(R.id.edit_player).text.toString() + " "
 
-        return sd_main.exists()
+                sd2.writeText(result)
+            } catch (e: Exception) {
+                // handle the exception
+                success = false
+                binding.errorText.setText(getString(R.string.create_directory_error))
+            }
+        }
+        return success
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.buttonApproveContract.setOnClickListener {
-           //var text_length = binding.editTextPlayer1.length()
            if ( binding.editLevel.length() == 0 ||
                 binding.editPlayer.length() == 0 ||
                 binding.editResultLevel.length() == 0 ||
@@ -100,45 +92,8 @@ class ResultOfDeal : Fragment() {
 
                binding.errorText.setText(getString(R.string.not_enough_players))
            } else {
-               findNavController().navigate(R.id.action_to_Table)
-             // val path = context?.getExternalFilesDir(null)
-             // val letDirectory = File(path, "Rubber")
-
-             // var success = letDirectory.mkdirs()
-
-             // if (success) {
-             //     val sd = File(letDirectory, "Results.txt")
-             //      if (!sd.exists())
-             //          success = sd.mkdir()
-
-             //      if (success) {
-             //          // directory exists or already created
-             //          val dest = File(sd, "Records.txt")
-             //          try {
-             //              // response is the data written to file
-             //              var result = view.findViewById<TextView>(R.id.edit_level).text.toString() + " "
-             //                           view.findViewById<TextView>(R.id.edit_suit).text.toString() + " "
-             //                           view.findViewById<TextView>(R.id.edit_result_level).text.toString() + " "
-             //                           view.findViewById<TextView>(R.id.edit_player).text.toString() + " "
-
-             //              PrintWriter(dest).use { out -> out.println(result) }
-
-             //              findNavController().navigate(R.id.action_to_Table)
-
-             //          } catch (e: Exception) {
-             //              // handle the exception
-             //              binding.errorText.setText(getString(R.string.file_write_error))
-             //          }
-             //      }
-             //     else {
-             //          binding.errorText.setText(getString(R.string.file_write_error))
-             //      }
-             // } else {
-             //     // directory creation is not successful
-
-             //     binding.errorText.setText(getString(R.string.create_file_error))
-             // }
-
+               if(trySaveResultsToFile(view))
+                    findNavController().navigate(R.id.action_to_Table)
            }
         }
     }
