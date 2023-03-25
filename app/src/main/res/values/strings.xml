@@ -5,9 +5,10 @@
     <string name="set_players_label">Ввод игроков</string>
     <string name="table_label">Таблица результатов</string>
     <string name="enter_results">Ввод результатов</string>
+    <string name="enter_result">Ввести результат</string>
 
     <string name="next">Ввод</string>
-    <string name="build_table">Построить таблицу</string>
+    <string name="revert_last_game">Откатить игру</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

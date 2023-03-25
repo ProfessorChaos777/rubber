@@ -184,27 +184,61 @@ class Table : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            val str = tryGetResultsFromFile(view)
-            if(str.length > 1) {
-                val level: Int = str[0].toInt()
-                val suit: Int = str[2].toInt()
-                val result: Int = str[4].toInt()
-                val team: Int = str[6].toInt()
+        binding.revertLastGame.setOnClickListener {
+
+        }
+
+        binding.buttonApproveContract.setOnClickListener {
+            findNavController().navigate(R.id.action_Table_to_ResultOfDeal)
+        }
+
+        val letDirectory = File(context?.getFilesDir(), "Rubber")
+        var success = true
+        if(!letDirectory.exists())
+            success = letDirectory.mkdirs()
+
+        val sd2 = File(letDirectory,"Results_file.txt")
+
+        if (!sd2.exists()) {
+            success = sd2.createNewFile()
+        }
+        if(success) {
+            try {
+                var first:Boolean = true
 
                 val robber:Robber=Robber()
 
-                robber.addGame(Game(team, result, Contract(level, suit,0)))
+                sd2.readLines().forEach {
+
+                    val str:String = it
+                    val words = it.split("\\s".toRegex()).toTypedArray()
+
+                    if(first) {
+                        binding.firstPair.setText(words.get(0) + "/" + words.get(1))
+                        binding.secondPair.setText(words.get(2) + "/" + words.get(3))
+                        first = false
+                    }
+                    else {
+
+                        val level: Int = words.get(0).toInt()
+                        val suit: Int = words.get(1).toInt()
+                        val result: Int = words.get(2).toInt()
+                        val team: Int = words.get(3).toInt()
+
+                        robber.addGame(Game(team, result, Contract(level, suit,0)))
+                    }
+                }
 
                 binding.columnTopRight.setText("texts")
 
                 binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
                 binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
-            }
-        }
 
-        binding.buttonApproveContract.setOnClickListener {
-            findNavController().navigate(R.id.action_Table_to_ResultOfDeal)
+            } catch (e: Exception) {
+                // handle the exception
+                success = false
+                //binding.errorText.setText(getString(R.string.create_directory_error))
+            }
         }
     }
 

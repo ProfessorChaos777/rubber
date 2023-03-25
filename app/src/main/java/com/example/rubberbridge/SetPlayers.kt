@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rubberbridge.databinding.FragmentFirstBinding
+import java.io.File
 
 
 /**
@@ -45,7 +47,39 @@ class SetPlayers : Fragment() {
                 binding.errorText.setText(getString(R.string.not_enough_players))
             }
             else {
-                findNavController().navigate(R.id.action_SetPlayers_to_Table)
+
+                val letDirectory = File(context?.getFilesDir(), "Rubber")
+                var success = true
+                if(!letDirectory.exists())
+                    success = letDirectory.mkdirs()
+
+                if(!success) {
+                    binding.errorText.setText(getString(R.string.create_directory_error))
+                }
+                else {
+                    val sd2 = File(letDirectory, "Results_file.txt")
+
+                    if (!sd2.exists()) {
+                        success = sd2.createNewFile()
+                        binding.errorText.setText(getString(R.string.create_file_error))
+                    }
+                    if (success) {
+                        try {
+                            var result = binding.editTextPlayer1.text.toString() + " "
+                            result += binding.editTextPlayer2.text.toString() + " "
+                            result += binding.editTextPlayer3.text.toString() + " "
+                            result += binding.editTextPlayer4.text.toString() + " "
+
+                            sd2.writeText(result)
+                        } catch (e: Exception) {
+                            // handle the exception
+                            success = false
+                            binding.errorText.setText(getString(R.string.open_file_error))
+                        }
+                    }
+
+                    findNavController().navigate(R.id.action_SetPlayers_to_Table)
+                }
             }
         }
     }

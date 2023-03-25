@@ -58,7 +58,7 @@ class ResultOfDeal : Fragment() {
         if(!letDirectory.exists())
             success = letDirectory.mkdirs()
 
-        val sd2 = File(letDirectory,"Results.txt")
+        val sd2 = File(letDirectory,"Results_file.txt")
 
         if (!sd2.exists()) {
             success = sd2.createNewFile()
@@ -71,7 +71,8 @@ class ResultOfDeal : Fragment() {
                 result +=view.findViewById<TextView>(R.id.edit_result_level).text.toString() + " "
                 result += view.findViewById<TextView>(R.id.edit_player).text.toString() + " "
 
-                sd2.writeText(result)
+                sd2.appendText("\n")
+                sd2.appendText(result)
             } catch (e: Exception) {
                 // handle the exception
                 success = false
