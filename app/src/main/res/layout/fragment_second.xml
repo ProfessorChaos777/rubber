@@ -7,6 +7,16 @@
     tools:context=".Table">
 
     <TextView
+        android:id="@+id/second_pair_before_game_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="5dp"
+        android:text="До гейма вторая пара"
+        app:layout_constraintStart_toEndOf="@+id/first_pair_before_game_label"
+        app:layout_constraintTop_toBottomOf="@+id/second_pair" />
+
+    <TextView
         android:id="@+id/textview_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,8 +28,8 @@
 
     <Button
         android:id="@+id/revert_last_game"
-        android:layout_width="158dp"
-        android:layout_height="85dp"
+        android:layout_width="164dp"
+        android:layout_height="60dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="18dp"
         android:text="@string/revert_last_game"
@@ -28,23 +38,25 @@
 
     <TextView
         android:id="@+id/column_top_left"
-        android:layout_width="145dp"
-        android:layout_height="78dp"
+        android:layout_width="163dp"
+        android:layout_height="161dp"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="29dp"
-        android:text="до гейма первая пара"
+        android:layout_marginTop="6dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="результаты"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_pair" />
+        app:layout_constraintTop_toBottomOf="@+id/first_pair_before_game_label" />
 
     <TextView
         android:id="@+id/column_top_right"
-        android:layout_width="133dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="162dp"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="25dp"
-        android:text="до гейма вторая пара"
+        android:layout_marginTop="1dp"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="результаты"
         app:layout_constraintStart_toEndOf="@+id/column_top_left"
-        app:layout_constraintTop_toBottomOf="@+id/second_pair" />
+        app:layout_constraintTop_toBottomOf="@+id/second_pair_before_game_label" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
@@ -98,9 +110,10 @@
         android:layout_width="207dp"
         android:layout_height="129dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="126dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/revert_last_game" />
 
@@ -109,17 +122,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="12dp"
         android:text="first pair"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/first_pair_before_game_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:text="До гейма первая пара"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_pair" />
 
     <TextView
         android:id="@+id/second_pair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="12dp"
         android:text="second pair"
         app:layout_constraintStart_toEndOf="@+id/first_pair"
         app:layout_constraintTop_toTopOf="parent" />

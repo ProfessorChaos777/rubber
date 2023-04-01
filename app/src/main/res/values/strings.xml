@@ -24,4 +24,5 @@
     <string name="create_file_error">Ошибка создания файла!</string>s
     <string name="create_directory_error">Ошибка создания директории!</string>s
     <string name="open_file_error">Ошибка открытия файла!</string>s
+    <string name="open_file_or_read_error">Ошибка открытия файла или чтения результатов!</string>s
 </resources>

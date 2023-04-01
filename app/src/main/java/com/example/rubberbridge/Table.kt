@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rubberbridge.databinding.FragmentSecondBinding
 import java.io.File
+import java.util.*
 
 //import com.example.rubberbridge.databinding.TableBinding
 
@@ -181,11 +182,65 @@ class Table : Fragment() {
 
         return result.get(0)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.revertLastGame.setOnClickListener {
+            val letDirectory = File(context?.getFilesDir(), "Rubber")
+            var success = true
+            if(!letDirectory.exists())
+                success = letDirectory.mkdirs()
 
+            val sd2 = File(letDirectory,"Results_file.txt")
+
+            if (!sd2.exists()) {
+                success = sd2.createNewFile()
+            }
+            if(success) {
+                try {
+                    var lines =  Vector<String>();
+                    val robber:Robber=Robber()
+
+                    sd2.readLines().forEach {
+                        lines.addElement(it)
+                    }
+
+                    if(lines.size > 0) {
+                        lines.removeLast();
+
+                        var first:Boolean = true
+
+                        for (line in lines) {
+
+                            if(first) {
+                                sd2.writeText(line)
+                                first = false
+                            }
+                            else {
+                                sd2.appendText(line)
+                                sd2.appendText("\n")
+
+                                val words = line.split("\\s".toRegex()).toTypedArray()
+
+                                val level: Int = words.get(0).toInt()
+                                val suit: Int = words.get(1).toInt()
+                                val result: Int = words.get(2).toInt()
+                                val team: Int = words.get(3).toInt()
+
+                                robber.addGame(Game(team, result, Contract(level, suit,0)))
+                            }
+                        }
+
+                        binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
+                        binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
+                    }
+           } catch (e: Exception) {
+                    // handle the exception
+                    success = false
+                    binding.errorTextView.setText(getString(R.string.open_file_or_read_error))
+                }
+            }
         }
 
         binding.buttonApproveContract.setOnClickListener {
@@ -229,15 +284,13 @@ class Table : Fragment() {
                     }
                 }
 
-                binding.columnTopRight.setText("texts")
-
                 binding.columnTopLeft.setText((robber.table.allPointsTeam1).toString())
                 binding.columnTopRight.setText((robber.table.allPointsTeam2).toString())
 
             } catch (e: Exception) {
                 // handle the exception
                 success = false
-                //binding.errorText.setText(getString(R.string.create_directory_error))
+                binding.errorTextView.setText(getString(R.string.open_file_or_read_error))
             }
         }
     }
