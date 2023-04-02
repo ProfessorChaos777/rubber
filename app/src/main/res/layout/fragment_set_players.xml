@@ -12,10 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/next"
+
+        android:background="@drawable/btn_style"
+
+
+        app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_text" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"/>
 
     <TextView
         android:id="@+id/EnterFirstPair"
@@ -46,6 +54,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="Василий"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EnterFirstPair" />
 
@@ -58,6 +67,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="Фёдор"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_player_1" />
 
@@ -70,6 +80,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="Виктор"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -82,13 +93,14 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:text="Александр"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_player_3" />
 
     <TextView
         android:id="@+id/error_text"
-        android:layout_width="386dp"
-        android:layout_height="205dp"
+        android:layout_width="381dp"
+        android:layout_height="92dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:textSize="20sp"

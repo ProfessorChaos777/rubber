@@ -18,13 +18,20 @@
 
     <Button
         android:id="@+id/revert_last_game"
-        android:layout_width="158dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:background="@drawable/btn_style"
+
         android:text="@string/revert_last_game"
-        app:layout_constraintStart_toEndOf="@+id/button_approve_contract"
-        app:layout_constraintTop_toBottomOf="@+id/column_bottom_right" />
+        app:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.75"/>
 
     <TextView
         android:id="@+id/column_top_left"
@@ -73,6 +80,21 @@
         app:layout_constraintStart_toEndOf="@+id/column_bottom_left"
         app:layout_constraintTop_toBottomOf="@+id/column_top_right" />
 
+    <Button
+        android:id="@+id/button_approve_contract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/btn_style"
+        android:text="@string/enter_result"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="409dp"
         android:layout_height="wrap_content"
@@ -81,28 +103,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/column_top_left" />
 
-    <Button
-        android:id="@+id/button_approve_contract"
-        android:layout_width="125dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="67dp"
-        android:text="@string/enter_result"
-        app:layout_constraintEnd_toStartOf="@+id/revert_last_game"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/column_bottom_left" />
-
     <TextView
         android:id="@+id/errorTextView"
-        android:layout_width="207dp"
-        android:layout_height="129dp"
+        android:layout_width="244dp"
+        android:layout_height="59dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="52dp"
         android:layout_marginEnd="126dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/revert_last_game" />
+        tools:layout_editor_absoluteY="354dp" />
 
     <TextView
         android:id="@+id/first_pair"
