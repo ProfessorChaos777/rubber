@@ -97,6 +97,26 @@ class ResultOfDeal : Fragment() {
                     findNavController().navigate(R.id.action_to_Table)
            }
         }
+
+        binding.buttonClubs.setOnClickListener {
+            binding.editSuit.setText("1")
+            binding.errorText.setText("крести")
+        }
+
+        binding.buttonDiamonds.setOnClickListener {
+            binding.editSuit.setText("2")
+            binding.errorText.setText("буби")
+        }
+
+        binding.buttonHearts.setOnClickListener {
+            binding.editSuit.setText("3")
+            binding.errorText.setText("черви")
+        }
+
+        binding.buttonSpades.setOnClickListener {
+            binding.editSuit.setText("4")
+            binding.errorText.setText("пики")
+        }
     }
 
     companion object {

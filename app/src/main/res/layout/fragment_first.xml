@@ -8,14 +8,15 @@
 
     <Button
         android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="121dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="66dp"
         android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_text" />
+        app:layout_constraintStart_toEndOf="@+id/EnterFirstPair"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/EnterFirstPair"
@@ -78,7 +79,7 @@
         android:layout_width="374dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -89,10 +90,9 @@
         android:id="@+id/error_text"
         android:layout_width="386dp"
         android:layout_height="205dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_player_4" />
+        tools:layout_editor_absoluteY="435dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
